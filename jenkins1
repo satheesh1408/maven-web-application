@@ -1,0 +1,20 @@
+node
+{
+def MavenHome = tool name : "maven-default-3.6.3"
+stage ('codecheckout')
+{
+git credentialsId: '9592df57-beca-4c4a-8be7-c12e0fb88158', url: 'https://github.com/vishnureddy997/maven-web-application.git'
+}
+stage ('Build')
+{
+sh " ${MavenHome}/bin/mvn package "
+} 
+stage ('sonarQube')
+{
+sh " ${MavenHome}/bin/mvn sonar:sonar "
+}
+stage ('upload artifactid in nexus')
+{
+sh "${MavenHome}/bin/mvn deploy"
+}    
+}
