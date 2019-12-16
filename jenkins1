@@ -1,4 +1,4 @@
-node
+node('flipkart-node')
 {
 def MavenHome = tool name : "maven-default-3.6.3"
 stage ('codecheckout')
